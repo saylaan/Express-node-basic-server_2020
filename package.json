@@ -6,7 +6,8 @@
     "scripts": {
         "start": "nodemon src/app.js \"npm run node && lint\"",
         "lint": "true || node_modules/.bin/eslint \"**/*.js\"",
-        "seed": "node ./seed/index.js"
+        "seed": "node ./seed/index.js",
+        "test": "node ./seed/index.js && cross-env NODE_ENV=test jest --testTimeout=10000"
     },
     "keywords": [
         "nodejs",
@@ -37,6 +38,15 @@
         "sqlite3": "^5.0.2"
     },
     "devDependencies": {
-        "eslint-plugin-vue": "^5.2.2"
+        "cross-env": "^7.0.3",
+        "eslint-plugin-vue": "^5.2.2",
+        "jest": "^28.1.0",
+        "supertest": "^6.2.3"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ]
     }
 }
