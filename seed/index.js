@@ -1,20 +1,30 @@
-const {
-    sequelize,
-    User,
-} = require('../src/models')
+const { sequelize, User, Object, UserObject } = require('../src/models');
 
-const Promise = require('bluebird')
+const Promise = require('bluebird');
 
-const users = require('./User/users.json')
+const users = require('./User/users.json');
+const userobjects = require('./User/userobjects.json');
 
-sequelize.sync({ force: true })
-    .then(async function() {
+const objects = require('./Object/objects.json');
 
-        /* ####################################################################### */
-        /* USER */
-        await Promise.all(
-            users.map(user => {
-                User.create(user)
-            })
-        )
-    })
+sequelize.sync({ force: true }).then(async function () {
+    /* ####################################################################### */
+    /* USER */
+    await Promise.all(
+        users.map((user) => {
+            User.create(user);
+        })
+    );
+    /* OBJECT */
+    await Promise.all(
+        objects.map((object) => {
+            Object.create(object);
+        })
+    );
+    /* USEROBJECT */
+    await Promise.all(
+        userobjects.map((userobject) => {
+            UserObject.create(userobject);
+        })
+    );
+});

@@ -1,5 +1,5 @@
-const AuthenticationController = require('../../controllers/Authen/AuthenticationController')
-const AuthenticationControllerPolicy = require('../../policies/AuthenticationControllerPolicy')
+const AuthenController = require('../../controllers/Authen/AuthenController');
+const AuthenControllerPolicy = require('../../policies/AuthenControllerPolicy');
 
 module.exports = (app) => {
     /* get / post / put / patch / delete */ // this for making the controller of data through the routes
@@ -8,9 +8,6 @@ module.exports = (app) => {
     //     message: 'Hello my name is status'
     //   })
     // })
-    app.post('/register',
-        AuthenticationControllerPolicy.register,
-        AuthenticationController.register)
-    app.post('/signin',
-        AuthenticationController.signin)
-}
+    app.post('/register', AuthenControllerPolicy.register, AuthenController.register);
+    app.post('/signin', AuthenController.signin);
+};
